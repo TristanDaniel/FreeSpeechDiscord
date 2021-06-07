@@ -1,7 +1,7 @@
 import discord
 
-token = 'ODUwMzc4Njk3MTYzNjY5NTA0.YLo24A.28qCdAJBhXEIaIxtlFGJBjjavww'
-targetchid = 850381224131821599
+token = 'bot token'
+targetchid = [channel id]
 client = discord.Client()
 lastuser = client
 
