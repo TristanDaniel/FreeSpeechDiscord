@@ -1,7 +1,7 @@
 import discord
 
-token = 'ODUwMzc4Njk3MTYzNjY5NTA0.YLo24A.28qCdAJBhXEIaIxtlFGJBjjavww'
-targetchid = 850381224131821599
+token = 'bot token'
+targetchid = [channel id]
 client = discord.Client()
 lastuser = client
 
@@ -11,6 +11,9 @@ async def on_ready():
 
 @client.event
 async def on_message(message):
+	c = []
+	for g in client.guilds:
+		c.append(discord.utils.get(g.channels, name="free-speech"))
 	global lastuser
 	msgcontent = message.content
 	msgauthor = message.author
@@ -20,12 +23,17 @@ async def on_message(message):
 			if not (lastuser == msgauthor):
 				msgcontent = "--\n" + msgcontent
 				lastuser = msgauthor
-			await targetch.send(msgcontent)
+			for i in range(len(c)):
+				if not(c[i] == None):
+					await c[i].send(msgcontent)
 		if message.attachments:
+			attachments = message.attachments
 			if not (lastuser == msgauthor):
 				msgcontent = "--\n" + msgcontent
 				lastuser = msgauthor
-			for i in range(len(message.attachments)):
-				await targetch.send(message.attachments[i].url)
+			for j in range(len(c)):
+				if not(c[j] == None):
+					for i in range(len(attachments)):
+						await c[j].send(message.attachments[i].url)
 
 client.run(token)
